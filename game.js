@@ -1,8 +1,6 @@
 
 // Game loop
 function gameLoop() {
-    // if(gameState === 'gameOver') return;
-
     update();
     render();
     requestAnimationFrame(gameLoop);
@@ -11,36 +9,31 @@ function gameLoop() {
 // Update game logic
 function update() {
     if (gameState !== 'playing') return;
+    // Update bird
+    updateBirdPostion();
 
-    // // Update bird
-    // updateBirdPostion();
-
-    // Generate pipes
-    if (pipes.length === 0 || pipes[pipes.length - 1].x < canvas.width - 200) {
-        generatePipe();
-    }
-
-    // Update pipes
-    updatePipesPositions();
-
-    // Check collisions
-    if (checkCollisions()) {
-        gameOver();
-    }
 }
 function onSpaceClick() {
-    switch (gameState) {
-        case 'start':
-            gameState = 'playing';
-            updateUI();
-            gameLoop();
-            break;
-        case 'playing':
-            break;
-
-        default:
-            break;
+    if(gameState === 'start') {
+        gameState = 'playing';
+        score = 0;
+        bird.y = canvas.height / 2;
+        bird.velocity = 0;
+        pipes.length = 0;
+        updateUI();
+    } else if(gameState === 'playing') {
+        jump();
     }
+}
+
+// Start game
+function startGame() {
+    gameState = 'playing';
+    score = 0;
+    bird.y = canvas.height / 2;
+    bird.velocity = 0;
+    pipes.length = 0;
+    updateUI();
 }
 
 // Game over

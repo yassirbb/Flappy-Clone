@@ -126,7 +126,7 @@ function render() {
     drawGround()
     if (gameState === 'playing' || gameState === 'gameOver') {
         // Draw pipes\
-        drawPipes();
+        // drawPipes();
         // Draw bird
         drawBird();
     }

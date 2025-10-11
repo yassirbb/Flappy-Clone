@@ -16,9 +16,10 @@ const bird = {
     y: canvas.height / 2,
     width: 30,
     height: 30,
-    color: '#FFD700',
     velocity: 0,
     gravity: 0.5,
+    jumpPower: -8,
+    color: '#FFD700'
 };
 
 let gameState = 'start'; // 'start', 'playing', 'gameOver'
@@ -43,8 +44,13 @@ function generatePipe() {
 }
 
 function updateBirdPostion() {
+    // Update bird
     bird.velocity += bird.gravity;
     bird.y += bird.velocity;
+}
+
+function jump() {
+    bird.velocity = bird.jumpPower;
 }
 
 function updatePipesPositions() {
@@ -61,6 +67,7 @@ function updatePipesPositions() {
 }
 
 function idTheBirdInsideThepipe(pipe) {
+    // console.log({birdstart: bird.x, birdEnd:bird.x + bird.width,  pipeStart: pipe.x ,pipeEnd: pipe.x + pipeWidth })
     const isBeforePipeEnd = bird.x < pipe.x + pipeWidth;
     const isAfterPipeStart = bird.x + bird.width > pipe.x;
     const isBelowBottomPipe = bird.y < pipe.topHeight;

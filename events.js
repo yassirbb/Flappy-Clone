@@ -6,11 +6,16 @@ function init() {
     gameLoop();
 }
 
+
 // Event listeners
 document.addEventListener('keydown', (e) => {
     if (e.code === 'Space') {
         e.preventDefault();
-        onSpaceClick();
+        if (gameState === 'start') {
+            startGame();
+        } else if (gameState === 'playing') {
+            jump();
+        }
     }
 });
 
