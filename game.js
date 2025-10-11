@@ -12,6 +12,11 @@ function update() {
     // Update bird
     updateBirdPostion();
 
+    // Check collisions
+    if (checkCollisions()) {
+        gameOver();
+    }
+
 }
 function onSpaceClick() {
     if(gameState === 'start') {

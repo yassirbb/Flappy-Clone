@@ -79,17 +79,18 @@ function idTheBirdInsideThepipe(pipe) {
 // Check collisions
 function checkCollisions() {
     // Check collision with pipes
-    for (let pipe of pipes) {
-        if (idTheBirdInsideThepipe(pipe)) {
-            return true;
-        }
-    }
+    // for (let pipe of pipes) {
+    //     if (idTheBirdInsideThepipe(pipe)) {
+    //         return true;
+    //     }
+    // }
     
     // Check collision with ground
     if (bird.y + bird.height > canvas.height - 50) {
         return true;
     }
 
+    // Check if bird is out of bounds
     if(bird.y > canvas.height || bird.y < 0) {
         return true;
     }
