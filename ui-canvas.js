@@ -1,3 +1,4 @@
+// canvas actions
 function drawGround() {
     // Draw ground
     ctx.fillStyle = '#8B4513';
@@ -10,7 +11,6 @@ function drawGround() {
     }
 }
 
-// Draw decorative clouds
 function drawClouds() {
     ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
     
@@ -79,6 +79,24 @@ function drawBackground() {
     drawGround();
     drawClouds();
     drawBird();
+}
+
+// ui actions
+
+// Update UI
+function updateUI() {
+    startScreen.classList.toggle('hidden', gameState !== 'start');
+    gameOverScreen.classList.toggle('hidden', gameState !== 'gameOver');
+    gameUI.classList.toggle('hidden', gameState !== 'playing');
+    
+    if (gameState === 'gameOver') {
+        finalScoreElement.textContent = `Score: ${score}`;
+        bestScoreElement.textContent = `Best: ${bestScore}`;
+    }
+    
+    if (gameState === 'playing') {
+        scoreElement.textContent = score;
+    }
 }
 
 drawBackground();
