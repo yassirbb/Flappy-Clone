@@ -67,6 +67,13 @@ body {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
+.screen h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #FF6B6B;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
 .screen p {
     font-size: 1.2rem;
     margin-bottom: 10px;
@@ -84,4 +91,31 @@ body {
 .instructions p {
     font-size: 1rem;
     margin-bottom: 5px;
+}
+
+#restartBtn {
+    margin-top: 20px;
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+}
+
+#restartBtn:hover {
+    background: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+}
+
+#restartBtn:active {
+    transform: translateY(0);
+}
+
+.hidden {
+    display: none !important;
 }
