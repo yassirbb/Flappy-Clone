@@ -75,13 +75,22 @@ function drawBird() {
     ctx.restore();
 }
 
-function drawBackground() {
-    drawGround();
-    drawClouds();
-    drawBird();
+function drawPipes() {
+    // Draw pipes
+    ctx.fillStyle = '#228B22';
+    pipes.forEach(pipe => {
+        // Top pipe
+        ctx.fillRect(pipe.x, 0, pipeWidth, pipe.topHeight);
+        // Bottom pipe
+        ctx.fillRect(pipe.x, pipe.topHeight + pipeGap, pipeWidth, canvas.height - pipe.topHeight - pipeGap);
+        
+        // Pipe caps
+        ctx.fillStyle = '#32CD32';
+        ctx.fillRect(pipe.x - 5, pipe.topHeight - 20, pipeWidth + 10, 20);
+        ctx.fillRect(pipe.x - 5, pipe.topHeight + pipeGap, pipeWidth + 10, 20);
+        ctx.fillStyle = '#228B22';
+    });
 }
-
-// ui actions
 
 // Update UI
 function updateUI() {
@@ -99,4 +108,29 @@ function updateUI() {
     }
 }
 
-drawBackground();
+
+// Render game
+function render() {
+    // Clear canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Draw background gradient
+    const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+    gradient.addColorStop(0, '#87CEEB');
+    gradient.addColorStop(0.7, '#98FB98');
+    gradient.addColorStop(1, '#90EE90');
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Draw ground
+    drawGround()
+    if (gameState === 'playing' || gameState === 'gameOver') {
+        // Draw pipes\
+        drawPipes();
+        // Draw bird
+        drawBird();
+    }
+
+    // Draw clouds
+    drawClouds();
+}

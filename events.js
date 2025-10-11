@@ -1,5 +1,11 @@
 
 
+// Game initialization
+function init() {
+    updateUI();
+    gameLoop();
+}
+
 // Event listeners
 document.addEventListener('keydown', (e) => {
     if (e.code === 'Space') {
@@ -12,3 +18,5 @@ document.addEventListener('keydown', (e) => {
 canvas.addEventListener('contextmenu', (e) => {
     e.preventDefault();
 });
+
+init();
