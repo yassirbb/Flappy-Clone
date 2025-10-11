@@ -93,6 +93,8 @@ body {
     margin-bottom: 5px;
 }
 
+/* Game Over Screen */
+
 #restartBtn {
     margin-top: 20px;
     padding: 12px 24px;
@@ -118,4 +120,24 @@ body {
 
 .hidden {
     display: none !important;
+}
+
+/* Playing Score */
+#gameUI {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+}
+
+#score {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.3);
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
 }
