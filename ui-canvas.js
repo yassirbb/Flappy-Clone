@@ -124,16 +124,17 @@ function render() {
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+    // Draw clouds
+    drawClouds();
+
     // Draw ground
     drawGround()
     if (gameState === 'playing' || gameState === 'gameOver') {
         // Draw pipes\
         console.log('draw pipes', pipes)
         drawPipes();
+
         // Draw bird
         drawBird();
     }
-
-    // Draw clouds
-    drawClouds();
 }
