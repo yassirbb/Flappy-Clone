@@ -24,22 +24,29 @@ const bird = {
 
 let gameState = 'start'; // 'start', 'playing', 'gameOver'
 let score = 0;
-let bestScore = 0;
+let bestScore = localStorage.getItem('flappyBirdBest') || 0;
 
 let pipes = [];
-const pipeWidth = 60;
 const pipeGap = 150;
+const pipeWidth = 60;
 const pipeSpeed = 2;
+
+function randomPipeGap() {
+    return Math.random() * (pipeGap * 3 - pipeGap) + pipeGap;
+}
 
 // Generate new pipe
 function generatePipe() {
+    const gap = randomPipeGap();
     const minHeight = 50;
-    const maxHeight = canvas.height - pipeGap - minHeight - 50; // Account for ground
+    const maxHeight = canvas.height - gap - minHeight - 50; // Account for ground
     const topHeight = Math.random() * (maxHeight - minHeight) + minHeight;
     
+    const distancBetweenTwoPipe = Math.random() * (canvas.width * 2 - canvas.width) + canvas.width;
     pipes.push({
-        x: canvas.width,
-        topHeight: topHeight
+        x: distancBetweenTwoPipe,
+        topHeight: topHeight,
+        gap: gap
     });
 }
 
@@ -67,23 +74,22 @@ function updatePipesPositions() {
 }
 
 function idTheBirdInsideThepipe(pipe) {
-    // console.log({birdstart: bird.x, birdEnd:bird.x + bird.width,  pipeStart: pipe.x ,pipeEnd: pipe.x + pipeWidth })
     const isBeforePipeEnd = bird.x < pipe.x + pipeWidth;
     const isAfterPipeStart = bird.x + bird.width > pipe.x;
     const isBelowBottomPipe = bird.y < pipe.topHeight;
-    const isAboveTopPipe = bird.y + bird.height > pipe.topHeight + pipeGap;
+    const isAboveTopPipe = bird.y + bird.height > pipe.topHeight + pipe.gap;
 
-    return isBeforePipeEnd && isAfterPipeStart && isBelowBottomPipe && isAboveTopPipe;
+    return isBeforePipeEnd && isAfterPipeStart && ( isBelowBottomPipe || isAboveTopPipe);
 }
 
 // Check collisions
 function checkCollisions() {
     // Check collision with pipes
-    // for (let pipe of pipes) {
-    //     if (idTheBirdInsideThepipe(pipe)) {
-    //         return true;
-    //     }
-    // }
+    for (let pipe of pipes) {
+        if (idTheBirdInsideThepipe(pipe)) {
+            return true;
+        }
+    }
     
     // Check collision with ground
     if (bird.y + bird.height > canvas.height - 50) {

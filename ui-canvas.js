@@ -82,12 +82,12 @@ function drawPipes() {
         // Top pipe
         ctx.fillRect(pipe.x, 0, pipeWidth, pipe.topHeight);
         // Bottom pipe
-        ctx.fillRect(pipe.x, pipe.topHeight + pipeGap, pipeWidth, canvas.height - pipe.topHeight - pipeGap);
+        ctx.fillRect(pipe.x, pipe.topHeight + pipe.gap, pipeWidth, canvas.height - pipe.topHeight - pipe.gap);
         
         // Pipe caps
         ctx.fillStyle = '#32CD32';
         ctx.fillRect(pipe.x - 5, pipe.topHeight - 20, pipeWidth + 10, 20);
-        ctx.fillRect(pipe.x - 5, pipe.topHeight + pipeGap, pipeWidth + 10, 20);
+        ctx.fillRect(pipe.x - 5, pipe.topHeight + pipe.gap, pipeWidth + 10, 20);
         ctx.fillStyle = '#228B22';
     });
 }
@@ -111,6 +111,8 @@ function updateUI() {
 
 // Render game
 function render() {
+    if (gameState !== 'playing') return;
+
     // Clear canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -126,7 +128,8 @@ function render() {
     drawGround()
     if (gameState === 'playing' || gameState === 'gameOver') {
         // Draw pipes\
-        // drawPipes();
+        console.log('draw pipes', pipes)
+        drawPipes();
         // Draw bird
         drawBird();
     }

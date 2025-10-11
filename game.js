@@ -12,6 +12,13 @@ function update() {
     // Update bird
     updateBirdPostion();
 
+    // Generate pipes
+    if (pipes.length === 0 || pipes[pipes.length - 1].x < canvas.width - 200) {
+        generatePipe();
+    }
+
+    updatePipesPositions();
+
     // Check collisions
     if (checkCollisions()) {
         gameOver();
@@ -48,6 +55,7 @@ function gameOver() {
     // Update best score
     if (score > bestScore) {
         bestScore = score;
+        localStorage.setItem('flappyBirdBest', bestScore);
     }
     
     updateUI();
