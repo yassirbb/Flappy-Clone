@@ -55,7 +55,7 @@ function gameOver() {
     // Update best score
     if (score > bestScore) {
         bestScore = score;
-        localStorage.setItem('flappyBirdBest', bestScore);
+        localStorage.setItem('flappyBest', bestScore);
     }
     
     updateUI();

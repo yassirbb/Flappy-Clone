@@ -24,7 +24,7 @@ const bird = {
 
 let gameState = 'start'; // 'start', 'playing', 'gameOver'
 let score = 0;
-let bestScore = localStorage.getItem('flappyBirdBest') || 0;
+let bestScore = localStorage.getItem('flappyBest') || 0;
 
 let pipes = [];
 const pipeGap = 150;
