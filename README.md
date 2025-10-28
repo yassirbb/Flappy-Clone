@@ -5,6 +5,8 @@ A simple implementation of the classic Flappy Bird game.
 ## 🎮 Play Online
 
 **[Play the game now!](https://yassirbb.github.io/Flappy-Clone/)** - No download required, works in any modern browser.
+**[Read the full tutorial](https://medium.com/@yassirbb/build-your-own-flappy-bird-clone-with-html-css-javascript-85cf61b97cf4)**
+
 
 ## Features
 
